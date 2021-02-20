@@ -27,14 +27,14 @@ $ aws configure
 	$ zip -r deploy.zip index.js node_modules/
 
 - Upload via aws cli
-    $ zip -r deploy.zip index.js node_modules/
-    $ aws lambda update-function-code --function-name lambda-serverless-backside --zip-file fileb://deploy.zip
+	$ zip -r deploy.zip index.js node_modules/
+	$ aws lambda update-function-code --function-name lambda-serverless-backside --zip-file fileb://deploy.zip
 
 - Serverless config
 - Crie os arquivos de configuracao
-    $ serverless create --template aws-nodejs --path clientes-less
-    $ cd clientes-less
-    $ sls invoke local -f hello  # hello é o nome da funcao no handler.js
+	$ serverless create --template aws-nodejs --path clientes-less
+	$ cd clientes-less
+	$ sls invoke local -f hello  # hello é o nome da funcao no handler.js
 
 - Altere o handler.js para module.exports.meusClientes = async (event) .....
 - Altere o serverless.yml para functions: meusClientes: handler: handler.meusClientes
@@ -56,9 +56,9 @@ $ aws configure
 - Antes de acesso IAM > permita uso de AmazonApiGateway
 
 - Altere o serverless.yml
-    events:
-      - httpApi:
-          path: /users/create
+	events:
+	  - httpApi:
+		  path: /users/create
 
 - Deploy via serverless
 $ sls deploy
