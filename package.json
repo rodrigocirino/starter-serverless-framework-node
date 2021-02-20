@@ -1,0 +1,23 @@
+{
+  "name": "clientes-less",
+  "version": "1.0.0",
+  "description": "======== SERVERLESS + AWS + NODE ==============================",
+  "main": "handler.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "serverless",
+    "aws",
+    "cloudformation",
+    "node12"
+  ],
+  "author": "Alura Cursos Online",
+  "license": "ISC",
+  "devDependencies": {
+    "serverless-offline": "^6.8.0"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.848.0"
+  }
+}

@@ -1,0 +1,128 @@
+{
+	"info": {
+		"_postman_id": "4cbc0c5f-c9be-41a6-88cd-2deacaa7e4de",
+		"name": "Serverless-Framework",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET Pacientes All",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/dev/pacientes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"dev",
+						"pacientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Paciente ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/dev/pacientes/1-a",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"dev",
+						"pacientes",
+						"1-a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Paciente",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"paciente_id\": \"999-abc\",\n\t\"nome\": \"Joe Doe\",\n\t\"data_nascimento\": \"2021-02-02\",\n\t\"email\": \"Joe@doe.com\",\n\t\"telefone\": \"419999222222\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/dev/pacientes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"dev",
+						"pacientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Paciente REMOTE AWS",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://xzf7jccxwg.execute-api.us-east-1.amazonaws.com/dev/pacientes",
+					"protocol": "https",
+					"host": [
+						"xzf7jccxwg",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"pacientes"
+					]
+				},
+				"description": "If Access Denied, inclua o arn indicado no serverless em na instrucao iamRoleStatements"
+			},
+			"response": []
+		},
+		{
+			"name": "GET Paciente REMOTE AWS ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://xzf7jccxwg.execute-api.us-east-1.amazonaws.com/dev/pacientes/1234-def",
+					"protocol": "https",
+					"host": [
+						"xzf7jccxwg",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"pacientes",
+						"1234-def"
+					]
+				},
+				"description": "If Access Denied, inclua o arn indicado no serverless em na instrucao iamRoleStatements"
+			},
+			"response": []
+		}
+	]
+}
