@@ -8,3 +8,4 @@ jspm_packages
 package-lock.json
 .dynamodb
 bin
+OLD.zip

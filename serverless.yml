@@ -11,7 +11,7 @@ custom:
     stages:
       - dev
     start:
-      port: 7000
+      port: 8000
       inMemory: true
       heapInitial: 200m
       heapMax: 1g
@@ -97,6 +97,9 @@ resources:
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
+
+
+
 
 ##############################################################
 ###############      DEFAULT CONFIGURATION   #################

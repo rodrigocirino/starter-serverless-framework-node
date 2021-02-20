@@ -1,3 +1,16 @@
+# Run
+$ npm i
+$ serverless --verbose
+$ npm run fixtures 
+$ sls offline start
+$ curl --location --request GET 'https://xzf7jccxwg.execute-api.us-east-1.amazonaws.com/dev/pacientes/1234-def'
+
+## outros comandos
+$ sls deploy
+$ serverless create --template aws-nodejs --path temp
+$ aws dynamodb batch-write-item --request-items file://pacientes.dynamodb.json
+$ sls logs -f cadastro-pacientes-dev-obterPaciente --tail
+$ sls logs -f https://xzf7jccxwg.execute-api.us-east-1.amazonaws.com/dev/pacientes --tail
 
 
 ======== SERVERLESS + AWS ==============================
