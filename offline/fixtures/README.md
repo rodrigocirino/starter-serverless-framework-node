@@ -1,0 +1,1 @@
+> Este arquivo vai gerar 100 registros de pacientes e salvar no arquivo pacientes-seed.json, para que tenhamos uma massa de dados aleatório para o Dynamo poder trabalhar localmente. 
