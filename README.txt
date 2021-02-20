@@ -7,6 +7,7 @@
 - Teste AWS
 $ aws help
 - Teste Serverless
+- sls é um comando node run, logo sls sobe todas as instancias em package.json também!
 $ sls help
 $ serverless plugin list
 
@@ -69,7 +70,8 @@ https://www.serverless.com/framework/docs/providers/aws/cli-reference/logs/
 $ sls logs -f listarPacientes -t
 $ sls logs -f obterPaciente -t
 
-- Testando localmente
+- ===================================================================================================
+- ====================== TESTANDO LOCALMENTE O SERVERLESS SEM SLS DEPLOY ============================
 somente fazer (sls deploy) depois de testar tudo local
 https://www.serverless.com/plugins/ e digite offline
 $ npm i serverless-offline --save-dev
@@ -110,7 +112,7 @@ $ sls offline
 	}
 
 - Exclua a tabela anterior, vamos criar no serverless!
-- Permita o uso do Dynamo
+- Permita o uso do DynamoDB
 - Local não da erro porque local usamos nossas credencias de administrador local
 - adicione iamRoleStatements
 	provider:
@@ -118,12 +120,12 @@ $ sls offline
 	iamRoleStatements:
 		- Effect: Allow
 		Action:
-			- dynamodb:Query
-			- dynamodb:Scan
-			- dynamodb:PutItem
-			- dynamodb:DeleteItem
-			- dynamodb:GetItem
-		Resource: arn:aws:dynamodb:us-east-1:0000000000000:table/PACIENTES
+			- DynamoDB:Query
+			- DynamoDB:Scan
+			- DynamoDB:PutItem
+			- DynamoDB:DeleteItem
+			- DynamoDB:GetItem
+		Resource: arn:aws:DynamoDB:us-east-1:0000000000000:table/PACIENTES
 		--MENSAGEM DE ERRO JÁ DIZ QUAL ARN INCLUIR
 
 
@@ -147,7 +149,7 @@ https://www.serverless.com/framework/docs/providers/aws/guide/resources/
 				ReadCapacityUnits: 1
 				WriteCapacityUnits: 1
 
-- Use o Dynamo no seu código-fonte
+- Use o DynamoDB no seu código-fonte
 	...
 	const dynamoDb = new AWS.DynamoDB.DocumentClient();
 	const params = {
@@ -160,7 +162,7 @@ https://www.serverless.com/framework/docs/providers/aws/guide/resources/
 	...
 
 - Popule o banco de dados com um json via aws-cli
-$ aws dynamodb batch-write-item --request-items file://pacientes.dynamodb.json
+$ aws DynamoDB batch-write-item --request-items file://pacientes.dynamoDb.json
 $ sls deploy
 $ curl --location --request GET 'https://aaaaa.execute-api.us-east-1.amazonaws.com/dev/pacientes/1234-def'
 
@@ -175,3 +177,13 @@ $ curl --location --request GET 'https://aaaaa.execute-api.us-east-1.amazonaws.c
 		"email": "Joe@doe.com",
 		"telefone": "419999222222"
 	}'
+
+- Deletar um paciente_id
+- Para economizar em cloud ao inves de fazer duas operacoes uma para chegar se existe outra para deletar
+	usamos a ConditionExpression da delete do DynamoDB
+		await dynamoDb.delete({ ...params, 
+			Key: {
+			paciente_id: pacienteId
+			},
+			ConditionExpression: 'attribute_exists(paciente_id)'
+		}).promise()

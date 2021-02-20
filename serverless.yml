@@ -1,7 +1,28 @@
 service: cadastro-pacientes
 
 plugins:
+  # npm i serverless-dynamodb-local --save-dev && sls dynamodb install
+  - serverless-dynamodb-local
   - serverless-offline
+
+custom:
+  dynamodb:
+  # If you only want to use DynamoDB Local in some stages, declare them here
+    stages:
+      - dev
+    start:
+      port: 8000
+      inMemory: true
+      heapInitial: 200m
+      heapMax: 1g
+      migrate: true
+      seed: true
+      convertEmptyValues: true
+    seed:
+      domain:
+        sources:
+          - table: PACIENTES
+            sources: [./offline/migrations/pacientes-seed.json]
 
 provider:
   name: aws
@@ -10,6 +31,8 @@ provider:
   # you can overwrite defaults here
   stage: dev
   region: us-east-1
+  environment:
+   PACIENTES_TABLE: 'PACIENTES-${opt:stage, self:provider.stage}'
 
   iamRoleStatements:
     - Effect: Allow
@@ -19,7 +42,8 @@ provider:
         - dynamodb:PutItem
         - dynamodb:DeleteItem
         - dynamodb:GetItem
-      Resource: arn:aws:dynamodb:us-east-1:881352322536:table/PACIENTES
+        - dynamodb:UpdateItem
+      Resource: 'arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.PACIENTES_TABLE}'
 
 functions:
   listarPacientes:
@@ -43,12 +67,27 @@ functions:
           path: pacientes
           method: post
 
+  atualizarPaciente:
+    handler: handler.atualizarPaciente
+    events:
+      - http:
+          path: pacientes/{pacienteId}
+          method: put
+          
+  excluirPaciente:
+    handler: handler.excluirPaciente
+    events:
+      - http:
+          path: pacientes/{pacienteId}
+          method: delete
+
+
 resources:
   Resources:
     PacientesTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: PACIENTES
+        TableName: ${self:provider.environment.PACIENTES_TABLE}
         AttributeDefinitions:
           - AttributeName: paciente_id
             AttributeType: S
