@@ -10,6 +10,9 @@ $ curl --location --request GET 'https://xzf7jccxwg.execute-api.us-east-1.amazon
 $ sls deploy --stage dev
 $ sls deploy --stage qa
 
+# remova tudo criado pelo sls deploy
+$ serverless remove --stage dev --region us-east-1
+
 ## outros comandos
 $ sls deploy
 $ serverless create --template aws-nodejs --path temp

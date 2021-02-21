@@ -53,7 +53,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"paciente_id\": \"999-abc\",\n\t\"nome\": \"Joe Doe\",\n\t\"data_nascimento\": \"2021-02-02\",\n\t\"email\": \"Joe@doe.com\",\n\t\"telefone\": \"419999222222\"\n}",
+					"raw": "{\n    \"paciente_id\": \"123-abc\",\n\t\"nome\": \"Joe Doe\",\n\t\"data_nascimento\": \"1999-02-02\",\n\t\"email\": \"Joe@doe.com\",\n\t\"telefone\": \"419999222222\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -79,7 +79,14 @@
 			"name": "GET Paciente REMOTE AWS",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "cadastrou_arn_no_iamrolestatements",
+						"value": "true",
+						"description": "Se não cadastrar o serverless vai usar as autenticacoes locais que são diferentes da interna do cloudformation, resultado é acesso negado ao acessar.",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "https://xzf7jccxwg.execute-api.us-east-1.amazonaws.com/dev/pacientes",
 					"protocol": "https",
@@ -105,7 +112,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://xzf7jccxwg.execute-api.us-east-1.amazonaws.com/dev/pacientes/1234-def",
+					"raw": "https://xzf7jccxwg.execute-api.us-east-1.amazonaws.com/dev/pacientes/1234-abc",
 					"protocol": "https",
 					"host": [
 						"xzf7jccxwg",
@@ -117,7 +124,7 @@
 					"path": [
 						"dev",
 						"pacientes",
-						"1234-def"
+						"1234-abc"
 					]
 				},
 				"description": "If Access Denied, inclua o arn indicado no serverless em na instrucao iamRoleStatements"
