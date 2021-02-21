@@ -10,7 +10,7 @@ const { v4: uuidv4 } = require("uuid");
 
 const dynamodbOfflineOptions = {
   region: "localhost",
-  endpoint: "http://localhost:8000"
+  endpoint: "http://localhost:7000"
 }
 
 const isOffline = () => process.env.IS_OFFLINE;

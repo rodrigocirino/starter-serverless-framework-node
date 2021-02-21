@@ -11,13 +11,14 @@ custom:
     stages:
       - dev
     start:
-      port: 8000
+      port: 7000
       inMemory: true
       heapInitial: 200m
       heapMax: 1g
       migrate: true
       seed: true
       convertEmptyValues: true
+      sharedDb: false
     seed:
       domain:
         sources:

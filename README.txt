@@ -1,9 +1,14 @@
 # Run
 $ npm i
-$ serverless --verbose
-$ npm run fixtures 
+$ sls --verbose
+$ npm i serverless-dynamodb-local --save-dev
+$ sls dynamodb install
+$ sls dynamodb start --sharedDb
+$ npm run fixtures
 $ sls offline start
 $ curl --location --request GET 'https://xzf7jccxwg.execute-api.us-east-1.amazonaws.com/dev/pacientes/1234-def'
+$ sls deploy --stage dev
+$ sls deploy --stage qa
 
 ## outros comandos
 $ sls deploy
@@ -204,5 +209,11 @@ $ curl --location --request GET 'https://aaaaa.execute-api.us-east-1.amazonaws.c
 - Rodando o DB local com um seed aleatório (faker.js)
 - npm run fixtures -- esta cadastrado em scripts do package.json
 	vai gerar dentro de fixtures uma massa de dados pacientes-seed.json
+	https://www.serverless.com/plugins/serverless-dynamodb-local/
 
+OBSERVACAO: Não consegui rodar o Dynamo localmente erro
+	Dynamodb Local Started, Visit: http://localhost:7000/shell
+	Serverless: DynamoDB - created table PACIENTES-dev
+	Resource Not Found Exception ---------------------------
+	ResourceNotFoundException: Cannot do operations on a non-existent table
 
