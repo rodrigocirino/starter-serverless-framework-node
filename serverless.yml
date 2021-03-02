@@ -5,26 +5,6 @@ plugins:
   - serverless-dynamodb-local
   - serverless-offline
 
-custom:
-  dynamodb:
-  # If you only want to use DynamoDB Local in some stages, declare them here
-    stages:
-      - dev
-    start:
-      port: 7000
-      inMemory: true
-      heapInitial: 200m
-      heapMax: 1g
-      migrate: true
-      seed: true
-      convertEmptyValues: true
-      sharedDb: false
-    seed:
-      domain:
-        sources:
-          - table: PACIENTES
-            sources: [./offline/migrations/pacientes-seed.json]
-
 provider:
   name: aws
   runtime: nodejs12.x
@@ -82,7 +62,6 @@ functions:
           path: pacientes/{pacienteId}
           method: delete
 
-
 resources:
   Resources:
     PacientesTable:
@@ -99,7 +78,25 @@ resources:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
 
-
+custom:
+  dynamodb:
+  # If you only want to use DynamoDB Local in some stages, declare them here
+    stages:
+      - dev
+    start:
+      port: 7000
+      inMemory: true
+      heapInitial: 200m
+      heapMax: 1g
+      migrate: true
+      seed: true
+      convertEmptyValues: true
+      sharedDb: false
+    seed:
+      domain:
+        sources:
+          - table: ${self:provider.environment.PACIENTES_TABLE}
+            sources: [./offline/migrations/pacientes-seed.json]
 
 
 ##############################################################
