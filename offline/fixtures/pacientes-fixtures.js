@@ -31,7 +31,9 @@ for (let i = 0; i < MAX_ITEMS; i++) {
 
   pacientes.push(data);
 
-  console.log(data);
+  //console.log(data);
 }
 
 fs.writeFile(fixtureFile, JSON.stringify(pacientes), 'utf8', callback);
+
+console.log(`-------- > FIXTURES create ${Object.keys(pacientes).length} values.\n\n\n\n`);

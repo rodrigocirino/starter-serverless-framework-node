@@ -1,12 +1,26 @@
-# Run
-$ npm i
-$ sls --verbose
-$ npm i serverless-dynamodb-local --save-dev
-$ sls dynamodb install
-$ sls dynamodb start --sharedDb
-$ npm run fixtures
-$ sls offline start
-$ curl --location --request GET 'https://xzf7jccxwg.execute-api.us-east-1.amazonaws.com/dev/pacientes/1234-def'
+#
+#
+# NOT NECESSARY, CREATE NOTHING IN AWS CONSOLE
+# DONT CREATE A DYNAMODB OR LAMBDA FUNCTIONS..
+#
+#
+
+npm install
+#// popule um json com random values
+npm run fixtures
+# //not necessary create a aws console db table
+npm i serverless-dynamodb-local --save-dev
+#// cria a pasta e faz o download de ./.dynamobd/DynamoDBLocal.jar
+sls dynamodb install
+# start db+api
+sls offline start
+# ou defina o stage 
+# // $ sls offline start --stage dev, dev é o default
+# Test application
+curl --location --request GET 'http://localhost:3000/${stage}/pacientes?limit=2' | jq
+
+### ---------------------------------------------------------------------------------------
+
 $ sls deploy --stage dev
 $ sls deploy --stage qa
 

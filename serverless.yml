@@ -12,6 +12,9 @@ provider:
   name: aws
   runtime: nodejs12.x
   # opt é se algo for inserido via linha de comando $ sls offline start --stage dev
+  #
+  # SEVERAL COMMANDS USE provider.stage
+  #
   stage: ${opt:stage, 'dev'}
   apiName: ${self:provider.stage, 'dev'}
   region: us-east-1

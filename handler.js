@@ -1,27 +1,25 @@
 "use strict";
-const pacientes = [
-  { id: 1, nome: "Maria", dataNascimento: "1984-11-01" },
-  { id: 2, nome: "Joao", dataNascimento: "1980-01-16" },
-  { id: 3, nome: "Jose", dataNascimento: "1998-06-06" },
-];
-
 const AWS = require("aws-sdk");
 const { v4: uuidv4 } = require("uuid");
 
 const dynamodbOfflineOptions = {
   region: "localhost",
-  endpoint: "http://localhost:7000"
+  endpoint: "http://localhost:8000"
 }
 
+//QUANTO ESTIVER LOCAL RODA LOCAL, NÃO LOCAL RODA NA AWS
 const isOffline = () => process.env.IS_OFFLINE;
 
 const dynamoDb = isOffline() 
   ? new AWS.DynamoDB.DocumentClient(dynamodbOfflineOptions) 
   : new AWS.DynamoDB.DocumentClient();
   
+// process.env.PACIENTES_TABLE ESTA SETADA NO serverless.yml em environments !!!
 const params = {
   TableName: process.env.PACIENTES_TABLE,
 };
+
+// curl --location --request GET 'http://localhost:3000/dev/pacientes?limit=5' | jq
 
 module.exports.listarPacientes = async (event) => {
     // MySQL
@@ -31,7 +29,7 @@ module.exports.listarPacientes = async (event) => {
 
   try {
     const queryString = {
-      limit: 5,
+      limit: 3,
       ...event.queryStringParameters
     }
     
