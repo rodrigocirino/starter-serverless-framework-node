@@ -1,0 +1,25 @@
+#
+# Access https://travis-ci.org/signin
+# Sign in with your github account
+# Check the project with travis.yml configs
+# Commit your changes
+#
+
+language: node_js
+node_js:
+    - 14.15.5
+env:
+    - NODE_ENV="development"
+
+cache: npm
+install:
+    - npm install
+    
+script: 
+    - npm test
+
+#
+# travis is a bot that run routines after, during or before a git push command
+# So... you can up a docker, exec a docker command, see logs inside a docker, and close docker.
+# Or... now as you can see only run tests in project and show the results, in a centralized place
+#
