@@ -227,10 +227,3 @@ $ curl --location --request GET 'https://aaaaa.execute-api.us-east-1.amazonaws.c
 - npm run fixtures -- esta cadastrado em scripts do package.json
 	vai gerar dentro de fixtures uma massa de dados pacientes-seed.json
 	https://www.serverless.com/plugins/serverless-dynamodb-local/
-
-OBSERVACAO: Não consegui rodar o Dynamo localmente erro
-	Dynamodb Local Started, Visit: http://localhost:7000/shell
-	Serverless: DynamoDB - created table PACIENTES-dev
-	Resource Not Found Exception ---------------------------
-	ResourceNotFoundException: Cannot do operations on a non-existent table
-
