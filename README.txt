@@ -222,8 +222,3 @@ $ curl --location --request GET 'https://aaaaa.execute-api.us-east-1.amazonaws.c
 			},
 			ConditionExpression: 'attribute_exists(paciente_id)'
 		}).promise()
-
-- Rodando o DB local com um seed aleatório (faker.js)
-- npm run fixtures -- esta cadastrado em scripts do package.json
-	vai gerar dentro de fixtures uma massa de dados pacientes-seed.json
-	https://www.serverless.com/plugins/serverless-dynamodb-local/
