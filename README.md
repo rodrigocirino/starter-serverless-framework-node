@@ -1,4 +1,10 @@
-# Starter project using Serverless framework + DynamoDB (Local) + Aws + Node Server
+# Starter project
+
+- Serverless framework
+- DynamoDB (Local)
+- AWS Lambda
+- AWS API Gateway
+- Node Server
 
 # Run
 
