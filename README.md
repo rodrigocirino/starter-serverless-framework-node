@@ -1,6 +1,13 @@
-# curso-intro-serverless
+# Starter project using Serverless framework + DynamoDB (Local) + Aws + Node Server
 
 # Run
+
+```sh
+$ ./install.sh
+```
+
+
+## or locally Run
 
 ```sh
 #
